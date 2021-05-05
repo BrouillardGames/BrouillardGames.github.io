@@ -3,13 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Buggy Drive</title>
+    <title>Buggy Drive</title>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      UnityLoader.instantiate("unityContainer", "Build/Game.json");
+		var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Game.json");
     </script>
   </head>
-  <body>
-    <div id="unityContainer" style="width: 960px; height: 540px; margin: auto"></div>
+  <body style="text-align: center; margin: 0; padding: 0; width: 100vw; height: 100vh;">
+    <div id="unityContainer" style="width: 100vw; height: 100vh; margin: auto"></div>
+	
+    <script type="text/javascript">
+	
+	public function post () {
+		console.log('Work! Post');
+		alert('Пост работает!');
+	}
+	public function friend () {
+		console.log('Work! Friend');
+		alert('friend работает!');
+	}
+	
+    </script>
+	
   </body>
 </html>
