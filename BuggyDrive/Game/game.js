@@ -48,6 +48,7 @@ function onNoAds() {};
 
 setTimeout(() => {
    ShowAdvert();
+   console.log('Advert showed!!!');
 }, 10000);
 
 function() ShowAdvert {
