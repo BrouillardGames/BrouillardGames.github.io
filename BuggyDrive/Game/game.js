@@ -21,6 +21,8 @@ function friend() {
 	VK.callMethod("showInviteBox");
 }
 
+
+
 /*
 
 window.addEventListener('load', function() {
@@ -48,26 +50,28 @@ function onNoAds() {};
 
 setTimeout(() => {
    ShowAdvert();
-   console.log('Advert showed!!!');
+   console.log('Advert showed!!! ' + vk_user_id);
 }, 10000);
 
-function() ShowAdvert {
+function ShowAdvert() {
+	
+    var user_id = null;   // user's id
+    var app_id = 7846841;  // your app's id
  
-   var user_id = vk_user_id;   // user's id
-   var app_id = 7846841;  // your app's id
+    admanInit({
+      user_id: user_id,
+      app_id: 7846841,
+      type: 'preloader'         // 'preloader' or 'rewarded' (default - 'preloader')
+      // params: {preview: 1}   // to verify the correct operation of advertising
+    }, onAdsReady, onNoAds);
  
-   admanInit({
-   user_id: user_id,
-   app_id: 7846841,
-   type: 'preloader'         // 'preloader' or 'rewarded' (default - 'preloader')
-   // params: {preview: 1}   // to verify the correct operation of advertising
-}, onAdsReady, onNoAds);
- 
-function onAdsReady(adman) {
-    adman.onStarted(function () {});
-    adman.onCompleted(function() {});          
-    adman.onSkipped(function() {});          
-    adman.onClicked(function() {});
-    adman.start('preroll');
+    function onAdsReady(adman) {
+      adman.onStarted(function () {});
+      adman.onCompleted(function() {});          
+      adman.onSkipped(function() {});          
+      adman.onClicked(function() {});
+      adman.start('preroll');
+    };
+    function onNoAds() {};
+	
 };
-function onNoAds() {};
