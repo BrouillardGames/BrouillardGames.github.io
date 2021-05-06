@@ -2,23 +2,18 @@ var vk_user_id;
 var app_id = 7846841;
 
 VK.init(function() {
-	apiId: app_id;
 	init();
   }, function() {
     alert('Ошибка авторизации SDK');
 	
 }, '5.130');
 
-function init(response) {
-	if (response.session) {
-		console.log(response.session.mid);
-		vk_user_id = response.session.mid;
-	}
-//	VK.api("user.get", {"fields": "id", "v":"5.73"}, function (data) { vk_user_id = data.response[0].user_id });
+function init() {
+	VK.api("user.get", {"fields": "id", "v":"5.73"}, function (data) {
+	//	vk_user_id = data.response[0].id 
+		console.log( data.response[0] );
+	});
 }
-
-VK.Auth.getLoginStatus(init);
-VK.Auth.login(init);
 
 
 function post(score) {
