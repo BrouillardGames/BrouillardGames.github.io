@@ -1,14 +1,31 @@
 var vk_user_id;
+var app_id = 7846841;
+
+VK.init({
+    apiId: app_id
+});
+function authInfo(response) {
+  if (response.session) {
+      console.log(response.session.mid);
+  }
+}
+VK.Auth.getLoginStatus(authInfo);
+VK.Auth.login(authInfo);
 
 VK.init(function() {
+	apiId: app_id;
 	init();
   }, function() {
     alert('Ошибка авторизации SDK');
 	
 }, '5.130');
 
-function init() {
-	VK.api("user.get", {"fields": "id", "v":"5.73"}, function (data) { vk_user_id = data.response[0].id });
+function init(response) {
+	if (response.session) {
+		console.log(response.session.mid);
+		vk_user_id = response.session.mid;
+	}
+//	VK.api("user.get", {"fields": "id", "v":"5.73"}, function (data) { vk_user_id = data.response[0].user_id });
 }
 
 
@@ -55,11 +72,8 @@ setTimeout(() => {
 
 function ShowAdvert() {
 	
-	var user_id = vk_user_id;   // user's id
-    var app_id = 7846841;  // your app's id
- 
     admanInit({
-      user_id: user_id,
+      user_id: vk_user_id,
       app_id: 7846841,
       type: 'preloader'         // 'preloader' or 'rewarded' (default - 'preloader')
       // params: {preview: 1}   // to verify the correct operation of advertising
