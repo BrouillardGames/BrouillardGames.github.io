@@ -8,7 +8,7 @@ VK.init(function() {
 }, '5.130');
 
 function init() {
-	VK.api("user.get", {"user_ids": "id!", "v":"5.73"}, function (data) { vk_user_id = data.response[0].id });
+	VK.api("user.get", {"user_ids": "id", "v":"5.73"}, function (data) { vk_user_id = data.response[0].id });
 }
 
 
