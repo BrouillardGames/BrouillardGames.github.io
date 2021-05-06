@@ -1,5 +1,6 @@
 var vk_user_id;
 var app_id = 7846841;
+var user_score;
 
 
 VK.init(function() {
@@ -19,6 +20,7 @@ function init() {
 
 
 function post(score) {
+	user_score = score;
 	VK.api("wall.post", {"message": "Я набрал " + (score) + " очков в игре Buggy Drive (https://vk.com/app7846841). Сможешь больше? #BrouillardGames", "attachments" : "photo-165410964_457239179, https://vk.com/app7846841", "v":"5.73"}, function (data) {
 });
 }
@@ -30,6 +32,10 @@ function friend() {
 setTimeout(() => {
    ShowAdvert();
    console.log('Advert showed!!! ' + vk_user_id);
+   
+   var myData = JSON.parse(data);
+   console.log(myData);
+   
 }, 15000);
 
 function ShowAdvert() {
@@ -48,6 +54,19 @@ function ShowAdvert() {
       adman.onClicked(function() {});
       adman.start('preroll');
     };
-    function onNoAds() {};
+    function onNoAds() { console.log('No ads...'); };
 	
 };
+
+function Save () {
+	
+	var user = {
+	
+		id: vk_user_id,
+		score: user_score
+	
+	};
+	
+	var userData = JSON.stringify(user);
+	
+}
