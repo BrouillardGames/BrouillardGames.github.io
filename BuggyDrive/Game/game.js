@@ -27,10 +27,6 @@ function friend() {
 	VK.callMethod("showInviteBox");
 }
 
-setTimeout(() => {
-   ShowAdvert();
-   console.log('Advert showed!!! ' + vk_user_id);
-}, 15000);
 
 function ShowAdvert() {
 	
@@ -43,7 +39,32 @@ function ShowAdvert() {
  
     function onAdsReady(adman) {
       adman.onStarted(function () {});
-      adman.onCompleted(function() {  console.log('Advert Complete: Reward PLS!'); });          
+      adman.onCompleted(function() { console.log('Advert complete'); });          
+      adman.onSkipped(function() {});          
+      adman.onClicked(function() {});
+      adman.start('preroll');
+    };
+    function onNoAds() { console.log('No ads...'); };
+	
+};
+
+function ShowReward() {
+	
+    admanInit({
+      user_id: vk_user_id,
+      app_id: 7846841,
+      type: 'rewarded'         // 'preloader' or 'rewarded' (default - 'preloader')
+      // params: {preview: 1}   // to verify the correct operation of advertising
+    }, onAdsReady, onNoAds);
+ 
+    function onAdsReady(adman) {
+      adman.onStarted(function () {});
+      adman.onCompleted(function() {
+		  
+		  console.log('Advert Complete: Reward PLS!');
+		  
+		  unityInstance.SendMessage('CoinManager', 'Reward');
+	  });          
       adman.onSkipped(function() {});          
       adman.onClicked(function() {});
       adman.start('preroll');
