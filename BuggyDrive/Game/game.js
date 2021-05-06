@@ -11,7 +11,7 @@ VK.init(function() {
 function init() {
 	VK.api("user.get", {"fields": "id", "v":"5.73"}, function (data) {
 	//	vk_user_id = data.response[0].id 
-		console.log( data.response[0] );
+		console.log( data.response.id );
 	});
 }
 
