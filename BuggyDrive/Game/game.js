@@ -1,17 +1,6 @@
 var vk_user_id;
 var app_id = 7846841;
 
-VK.init({
-    apiId: app_id
-});
-function authInfo(response) {
-  if (response.session) {
-      console.log(response.session.mid);
-  }
-}
-VK.Auth.getLoginStatus(authInfo);
-VK.Auth.login(authInfo);
-
 VK.init(function() {
 	apiId: app_id;
 	init();
@@ -27,6 +16,9 @@ function init(response) {
 	}
 //	VK.api("user.get", {"fields": "id", "v":"5.73"}, function (data) { vk_user_id = data.response[0].user_id });
 }
+
+VK.Auth.getLoginStatus(init);
+VK.Auth.login(init);
 
 
 function post(score) {
