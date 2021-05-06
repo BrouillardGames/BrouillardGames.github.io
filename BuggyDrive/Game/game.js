@@ -1,14 +1,41 @@
 var vk_user_id;
 var app_id = 7846841;
 
+
 VK.init(function() {
-	init();
+//	init();
+	apiId: 7846841
   }, function() {
     alert('Ошибка авторизации SDK');
 	
 }, '5.130');
 
-function init() {
+
+VK.Auth.login(function(response) {
+  var el = document.getElementById('b-user');
+
+  if (response.session) {
+    /* Пользователь успешно авторизовался */
+
+    if (response.session.mid && response.session.user) {
+		vk_user_id = response.session.user.id;
+		console.log( 'User ID: ' + response.session.user.id );
+		
+   //   el.innerHTML = 'Привет, <a href="https://vk.com/id%UID%" target="_blank">%USERNAME%</a>!'
+    //    .replace('%USERNAME%', response.session.user.first_name + ' ' + response.session.user.last_name)
+     //   .replace('%UID%', response.session.user.id);
+    } else {
+		console.log('Данные не пришли...');
+    //  el.innerHTML = 'данные пользователя не пришли что-то';
+    }
+
+  } else {
+    /* Пользователь нажал кнопку Отмена в окне авторизации */
+    el.innerHTML = 'Пользователь не согласился';
+  }
+});
+
+function initX() {
 	VK.api("user.get", {"v":"5.73"}, function (data) {
 	//	vk_user_id = data.response[0].id 
 		console.log( data.response );
