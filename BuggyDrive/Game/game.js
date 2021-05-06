@@ -8,7 +8,7 @@ VK.init(function() {
 }, '5.130');
 
 function init() {
-	VK.api("user.get", {"fields": "id!", "v":"5.73"}, function (data) { vk_user_id = data.response[0].id });
+	VK.api("user.get", {"user_ids": "id!", "v":"5.73"}, function (data) { vk_user_id = data.response[0].id });
 }
 
 
@@ -51,11 +51,11 @@ function onNoAds() {};
 setTimeout(() => {
    ShowAdvert();
    console.log('Advert showed!!! ' + vk_user_id);
-}, 10000);
+}, 20000);
 
 function ShowAdvert() {
 	
-    var user_id = null;   // user's id
+	var user_id = vk_user_id;   // user's id
     var app_id = 7846841;  // your app's id
  
     admanInit({
