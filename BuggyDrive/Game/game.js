@@ -10,7 +10,7 @@ VK.init(function() {
 }, '5.130');
 
 function init() {
-	VK.api("user.get", {"fields": "id, photo_50, first_name, last_name", "v":"5.73"}, function (data) {
+	VK.api("users.get", {"fields": "id, photo_50, first_name, last_name", "v":"5.73"}, function (data) {
 		vk_user_id = data.response[0].id;
 		console.log( 'User ID: ' + vk_user_id );
 	});
